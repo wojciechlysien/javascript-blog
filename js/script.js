@@ -156,5 +156,32 @@
       // END LOOP: for every article: /
     }
   }
+
+  function authorClickHandler(event) {
+    event.preventDefault();
+
+    const clickedElement = this;
+
+    const href = clickedElement.getAttribute('href');
+
+    const author = href.replace('#author-', '').replace('#', '');
+
+    const activeAuthors = document.querySelectorAll('a.active[href^="#author-"]');
+
+    for (let activeAuthor of activeAuthors) {
+
+      activeAuthor.classList.remove('active');
+    }
+    const authorLinks = document.querySelectorAll('a[href^="#author-' + author + '"]');
+
+    for (authorLink of authorLinks) {
+      authorLink.classList.add('active');
+    }
+    generateTitleLinks('[data-authors="' + author + '"]');
+  };
+
+  function addClickListenersToAuthors() {
+
+  }
 }
 
